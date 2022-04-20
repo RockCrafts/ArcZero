@@ -1,0 +1,29 @@
+.navbar {
+  background: #181818;
+}
+.navbar-tabs {
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.gen-page {
+  background: #292929;
+  min-height: 100%;
+}
+.player-nameplate {
+  display: inline-block;
+  padding: 0.25rem 0.6rem;
+  margin: 0.3rem 0.4rem;
+  background: #181818;
+  color: white;
+  border-top: 4px #5c97cf solid;
+  border-radius: 6px;
+  font-size: 1.4rem;
+}
+a {
+  text-decoration: none !important;
+}
+.header {
+  text-transform: uppercase;
+  font-weight: 900;
+}

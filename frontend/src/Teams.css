@@ -1,0 +1,19 @@
+.team-nameplate {
+  display: inline-block;
+  border-radius: 20px 20px 10px 10px;
+  height: 150px;
+  border-right: 5px solid #292929 !important;
+  border-left: 5px solid #292929 !important;
+  overflow: hidden;
+  /* margin: 0.3rem; */
+}
+.team-nameplate-name {
+  border-radius: 10px 10px 0 0;
+  text-align: center;
+  font-size: 2em;
+}
+
+.team-nameplate-img {
+  width: 80px;
+  height: 80px;
+}
