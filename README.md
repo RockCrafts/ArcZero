@@ -1,6 +1,7 @@
 ## Project ArcZero
 
-Developed by RockCrafts
+Developed by RockCrafts 
+
 Data gathered by poofa, Crystaal, Frogman, Kernmaster, Kory, & chromed
 
 ## What is ArcZero?
