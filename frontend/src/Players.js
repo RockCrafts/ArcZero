@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Col, Container, Form, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { fetchPlayers } from './API';
+import PlayerPlate from './PlayerPlate';
 
 function Players() {
   useEffect(() => {
@@ -32,19 +33,7 @@ function Players() {
             </Form.Group>
           </Form>
         </Row>
-        {playerData && (
-          <Row>
-            <div className='g-2'>
-              {playerData.map((player) => {
-                return (
-                  <Link key={player.uuid} to={`${player.uuid}/`}>
-                    <div className='player-nameplate'>{player.name}</div>
-                  </Link>
-                );
-              })}
-            </div>
-          </Row>
-        )}
+        <PlayerPlate playerData={playerData} />
       </Container>
     </Container>
   );

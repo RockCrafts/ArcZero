@@ -10,6 +10,11 @@ export const fetchPlayers = async () => {
 
   return json;
 };
+const getTeamFromUUID = async (uuid) => {
+  const response = await fetch(APIBASE + '/teams/' + uuid);
+  const json = await response.json();
+  return json;
+}
 export const getTeamByLeague = async () => {
   const data = await fetchTeams();
   let teamByLeague = {};

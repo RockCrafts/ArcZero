@@ -67,21 +67,25 @@ function Teams() {
           </Form>
         </Row>
         <Row>
-          <div className='g-2'>
-            {teamByLeague ? (
+          <div className=''>
+            {teamByLeague ? (<center>  {(
+              
               Object.entries(teamByLeague).map(([key, value]) => {
                 return (
+                  
                   <Row>
                     <h1>{key}</h1>
                     {value.map((e) => (
-                      <Link
-                        to={e.uuid}
-                        className='team-nameplate m-2'
+                     <Col sm={6} md={4} lg={2}>
+                      <div 
+                        className='team-nameplate m-1'
                         style={{
+              
                           borderTop: `solid 0.5rem ${e.branding.secondary}`,
                           background: '#181818',
                         }}
                       >
+                        <Link to={e.uuid}>
                         <div className='team-nameplate-name' style={{}}>
                           {e.name}
                         </div>
@@ -94,12 +98,18 @@ function Teams() {
                             />
                           </div>
                         </center>
-                      </Link>
+                        </Link>
+                      </div>
+                      </Col>
+            
                     ))}
                   </Row>
+                
+                  
                 );
               })
-            ) : (
+              
+            )} </center>): (
               <center>
                 <Spinner animation='border' size='lg' role='status' />
               </center>

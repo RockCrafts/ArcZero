@@ -1,10 +1,12 @@
 .team-nameplate {
+
   text-align: center;
-  display: table-cell;
+  display: inline-block;
   vertical-align: middle;
   border-radius: 5px;
   height: 100px;
-  width: 200px !important;
+  width: 100%;
+  /* width: 200px !important; */
 
   overflow: hidden;
   /* margin: 0.3rem; */
@@ -21,6 +23,7 @@
 
 .team-nameplate-img {
   position: relative;
-  width: 70px;
+  /* width: 70px; */
   height: 70px;
 }
+
