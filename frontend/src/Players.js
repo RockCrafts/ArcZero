@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
+import { Col, Container, Form, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { fetchPlayers } from './API';
 
@@ -20,6 +20,17 @@ function Players() {
               <h1 className='header'>Players</h1>
             </center>
           </Col>
+        </Row>
+        <Row className='m-3' md={12}>
+          <Form>
+            <Form.Group className='mb-3' controlId='formBasicCheckbox'>
+              <Form.Control
+                type='text'
+                label='Search'
+                placeholder='Filter Players'
+              />
+            </Form.Group>
+          </Form>
         </Row>
         {playerData && (
           <Row>

@@ -1,19 +1,26 @@
 .team-nameplate {
-  display: inline-block;
-  border-radius: 20px 20px 10px 10px;
-  height: 150px;
-  border-right: 5px solid #292929 !important;
-  border-left: 5px solid #292929 !important;
+  text-align: center;
+  display: table-cell;
+  vertical-align: middle;
+  border-radius: 5px;
+  height: 100px;
+  width: 200px !important;
+
   overflow: hidden;
   /* margin: 0.3rem; */
 }
 .team-nameplate-name {
+  padding: 0.1rem;
+  line-height: 2ch;
+  height: fit-content;
   border-radius: 10px 10px 0 0;
   text-align: center;
-  font-size: 2em;
+  font-size: 0.9em;
+  color: white;
 }
 
 .team-nameplate-img {
-  width: 80px;
-  height: 80px;
+  position: relative;
+  width: 70px;
+  height: 70px;
 }

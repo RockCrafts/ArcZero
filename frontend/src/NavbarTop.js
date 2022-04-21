@@ -1,20 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Container, Nav, Navbar } from 'react-bootstrap';
 import { useLocation } from 'react-router-dom';
-function NavbarTop() {
+function NavbarTop(currPage) {
   return (
     <div className='site-wrapper'>
       <Navbar className='navbar' variant='dark'>
         <Container>
           <Navbar.Brand href='/'>
-            <div className='navbar-header'>ArcZero</div>
+            <div className='navbar-header'>{}</div>
           </Navbar.Brand>
           <Nav className='navbar-tabs me-auto'>
-            <Nav.Link href='/'>Home</Nav.Link>
-            <Nav.Link active={true} href='/players'>
+            <Nav.Link active={window.location.pathname === '/'} href='/'>
+              Home
+            </Nav.Link>
+            <Nav.Link
+              active={window.location.pathname === '/players'}
+              href='/players'
+            >
               Players
             </Nav.Link>
-            <Nav.Link href='/teams'>Teams</Nav.Link>
+            <Nav.Link
+              active={window.location.pathname === '/teams'}
+              href='/teams'
+            >
+              Teams
+            </Nav.Link>
           </Nav>
         </Container>
       </Navbar>

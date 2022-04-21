@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
+import { Col, Container, Form, Row, Spinner } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import { getTeamByLeague } from './API';
 import './Teams.css';
 function Teams() {
@@ -54,34 +55,37 @@ function Teams() {
             </center>
           </Col>
         </Row>
+        <Row className='m-3' md={12}>
+          <Form>
+            <Form.Group className='mb-3' controlId='formBasicCheckbox'>
+              <Form.Control
+                type='text'
+                label='Search'
+                placeholder='Filter Teams'
+              />
+            </Form.Group>
+          </Form>
+        </Row>
         <Row>
           <div className='g-2'>
-            {teamByLeague &&
+            {teamByLeague ? (
               Object.entries(teamByLeague).map(([key, value]) => {
                 return (
                   <Row>
                     <h1>{key}</h1>
                     {value.map((e) => (
-                      <Col
-                        sm={12}
-                        md={6}
-                        lg={3}
-                        className='team-nameplate mt-3'
+                      <Link
+                        to={e.uuid}
+                        className='team-nameplate m-2'
                         style={{
-                          color: e.branding.secondary,
-                          background: e.branding.primary,
+                          borderTop: `solid 0.5rem ${e.branding.secondary}`,
+                          background: '#181818',
                         }}
                       >
-                        <h1
-                          className='team-nameplate-name'
-                          style={{
-                            borderTop: `solid 1.2rem ${e.branding.secondary}`,
-                          }}
-                        >
+                        <div className='team-nameplate-name' style={{}}>
                           {e.name}
-                        </h1>
+                        </div>
                         <center>
-                          {}
                           <div className='team-nameplate-imgwrapper'>
                             <img
                               className='team-nameplate-img'
@@ -90,11 +94,16 @@ function Teams() {
                             />
                           </div>
                         </center>
-                      </Col>
+                      </Link>
                     ))}
                   </Row>
                 );
-              })}
+              })
+            ) : (
+              <center>
+                <Spinner animation='border' size='lg' role='status' />
+              </center>
+            )}
           </div>
         </Row>
       </Container>

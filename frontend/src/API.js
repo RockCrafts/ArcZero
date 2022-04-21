@@ -13,7 +13,8 @@ export const fetchPlayers = async () => {
 export const getTeamByLeague = async () => {
   const data = await fetchTeams();
   let teamByLeague = {};
-  data.forEach((element) => {
+  data.forEach((element, i) => {
+    console.log(i);
     const prop = element.league + ' S' + element.season;
     if (teamByLeague.hasOwnProperty(prop)) {
       teamByLeague[prop].push(element);
@@ -21,5 +22,11 @@ export const getTeamByLeague = async () => {
       teamByLeague[prop] = [element];
     }
   });
+  // const ordered = Object.keys(teamByLeague)
+  //   .sort()
+  //   .reduce((obj, key) => {
+  //     obj[key] = teamByLeague[key];
+  //     return obj;
+  //   }, {});
   return teamByLeague;
 };
