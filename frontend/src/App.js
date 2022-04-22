@@ -4,6 +4,7 @@ import Home from './Home';
 import NavbarTop from './NavbarTop';
 import Players from './Players';
 import Teams from './Teams';
+import Team from './Team';
 // import { Nav } from 'react-bootstrap';
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <NavbarTop />
       <BrowserRouter>
         <Routes>
+          <Route path='/teams/:id' element={<Team />} />
           <Route path='/teams' element={<Teams />} />
           <Route path='/players' element={<Players />} />
           <Route path='/' element={<Home />} />

@@ -18,7 +18,7 @@ function recursiveRoutes(folderName) {
     if (stat.isDirectory()) {
       recursiveRoutes(fullName);
     } else if (file.toLowerCase().indexOf('.js')) {
-      require('./' + fullName)(app, base);
+      require('./' + fullName).main(app, base);
       console.log("require('" + fullName + "')");
     }
   });
