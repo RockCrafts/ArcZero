@@ -12,38 +12,48 @@ function Team() {
   }, []);
 
   return (
-    <Container className='gen-page text-light' fluid>
+    <Container className='gen-page text-light m-2' fluid>
       <Container>
         <Row>
           {teamData && (
             <Col
-              className='m-5 p-2'
+              className=' '
               md={12}
               style={{
-                borderTop: `solid 0.5rem ${teamData.branding.primary}`,
-                background: '#181818',
+                borderBottom: `solid 0.25rem ${teamData.branding.primary}`,
               }}
             >
-              <center className=''>
-                <h1>{teamData && teamData.name}</h1>
-
-                <h3>
-                  {teamData &&
-                    teamData.league +
-                      ' S' +
-                      teamData.season +
-                      ' ' +
-                      (teamData.division || '')}
-                </h3>
-                {teamData && <img src={teamData.branding.logo} height={300} />}
-              </center>
+              <div className='teambar'>
+              {teamData && <img className='teambar-img' src={teamData.branding.logo} height={300} />}
+                <div className='teambar-h1'>{teamData && teamData.name}</div>
+                
+      
+               
+                </div>
+                <Row className='teambottombar'>
+                <Col md={4} className='teambar-h2 right-text'>
+                {teamData &&
+                 'S' + teamData.season }
+                 </Col >
+                 <Col  md={4} className='teambar-h2'>
+                 {teamData &&
+                  teamData.league }
+         
+                 </Col>
+                 <Col  md={4} className='teambar-h2 left-text'>
+                {teamData &&
+                  teamData.division }
+                 </Col>
+                 </Row>
             </Col>
           )}
           <Col md={12}>
+            <p />
             <h3>Roster</h3>
             {teamData && <PlayerPlate playerData={teamData.roster} />}
           </Col>
           <Col md={12}>
+            <p />
             <h3>Staff</h3>
             {teamData && teamData.staff !== undefined && (
               <PlayerPlate playerData={teamData.staff} />

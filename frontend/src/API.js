@@ -4,6 +4,17 @@ const fetchTeams = async () => {
   const json = await response.json();
   return json;
 };
+export const ping = async () => {
+  try  {
+    const response = await fetch(APIBASE + '/ping');
+    const json = await response.text();
+    return true;
+  } catch(err) {
+    // console.log(err)
+    return false;
+  }
+  return true;
+}
 export const fetchPlayers = async () => {
   const response = await fetch(APIBASE + '/players');
   const json = await response.json();

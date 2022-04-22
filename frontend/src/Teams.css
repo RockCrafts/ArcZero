@@ -26,4 +26,35 @@
   /* width: 70px; */
   height: 70px;
 }
+.teambar {
 
+}
+.teambar {
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+}
+.teambar-h1  {
+
+  font-size: 5rem;
+  margin: 0 1rem ;
+  text-align: justify;
+  font-weight: 900;
+}
+.teambar-h2  {
+  font-size: 3rem;
+  display: inline;
+  text-align: center;
+  /* text-transform: ; */
+  /* margin: 0 0.5rem; */
+  /* font-size: 3rem; */
+}
+.right-text {
+  text-align: right;
+}
+
+.left-text {
+  text-align: left;
+}
