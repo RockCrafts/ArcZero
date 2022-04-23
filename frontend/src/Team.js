@@ -7,6 +7,7 @@ import './Teams.css';
 function Team() {
   const { id } = useParams();
   const [teamData, setTeamData] = useState(undefined);
+  // const [secti]
   useEffect(() => {
     getTeamFromUUID(id).then((out) => setTeamData(out));
   }, []);
@@ -24,29 +25,40 @@ function Team() {
               }}
             >
               <div className='teambar'>
-              {teamData && <img className='teambar-img' src={teamData.branding.logo} height={300} />}
-                <div className='teambar-h1'>{teamData && teamData.name}</div>
-                
-      
-               
+                {teamData && (
+                  <div className='teambar-imgwrapper'>
+                    <img
+                      className='teambar-img'
+                      src={teamData.branding.logo}
+                      alt={''}
+                    />
+                  </div>
+                )}
+                <div className='teambar-header'>
+                  <div className='teambar-h1'>{teamData && teamData.name}</div>
+                  <Row className='teambottombar'>
+                    <Col md='auto' className='teambar-h2'>
+                      {teamData && 'S' + teamData.season}
+                    </Col>
+                    <Col md='auto' className='teambar-h2'>
+                      {teamData && teamData.league}
+                    </Col>
+                    <Col md='auto' className='teambar-h2'>
+                      {teamData && teamData.division}
+                    </Col>
+                  </Row>
                 </div>
-                <Row className='teambottombar'>
-                <Col md={4} className='teambar-h2 right-text'>
-                {teamData &&
-                 'S' + teamData.season }
-                 </Col >
-                 <Col  md={4} className='teambar-h2'>
-                 {teamData &&
-                  teamData.league }
-         
-                 </Col>
-                 <Col  md={4} className='teambar-h2 left-text'>
-                {teamData &&
-                  teamData.division }
-                 </Col>
-                 </Row>
+              </div>
             </Col>
           )}
+          <Col md={12}>
+            <p />
+            <div className='team-section-selector'>
+              <button>Games</button>
+              <button>Roster {'&'} Management</button>
+              <button>Related Teams</button>
+            </div>
+          </Col>
           <Col md={12}>
             <p />
             <h3>Roster</h3>

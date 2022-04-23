@@ -1,5 +1,6 @@
 import React from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
+import PlayerPlate from './PlayerPlate';
 
 function Home() {
   return (
@@ -20,9 +21,23 @@ function Home() {
             </Col>
             <Col md={12}>
               <h3>Its a thing created by people who are dumb! (fucks)</h3>
+              <PlayerPlate
+                playerData={[
+                  { name: 'RockCrafts', uuid: '' },
+                  { name: 'poofa', uuid: '' },
+                  { name: 'Crystaal', uuid: '' },
+                  { name: 'Kernmaster', uuid: '' },
+                  { name: 'chromed', uuid: '' },
+                  { name: 'FROGMAN', uuid: '' },
+                  { name: 'Kory', uuid: '' },
+                ]}
+              />
             </Col>
             <Col md={12}>
               <h1>Supported Leagues:</h1>
+              <h3>
+                League Zero <p></p>
+              </h3>
             </Col>
             <Col md={12}></Col>
           </div>

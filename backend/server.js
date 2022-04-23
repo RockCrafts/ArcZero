@@ -1,4 +1,4 @@
-require('dotenv').config({});
+require('dotenv').config({ path: __dirname + '/.env' });
 const Airtable = require('airtable');
 const base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(
   process.env.AIRTABLE_BASE_ID
@@ -18,12 +18,12 @@ function recursiveRoutes(folderName) {
     if (stat.isDirectory()) {
       recursiveRoutes(fullName);
     } else if (file.toLowerCase().indexOf('.js')) {
-      require('./' + fullName).main(app, base);
+      require(fullName).main(app, base);
       console.log("require('" + fullName + "')");
     }
   });
 }
-recursiveRoutes('routes'); // Initialize it
+recursiveRoutes(__dirname + '/routes'); // Initialize it
 
 app.listen(PORT, () => {
   console.log(`ArcZero API at http://localhost:${PORT}`);

@@ -68,48 +68,44 @@ function Teams() {
         </Row>
         <Row>
           <div className=''>
-            {teamByLeague ? (<center>  {(
-              
-              Object.entries(teamByLeague).map(([key, value]) => {
-                return (
-                  
-                  <Row>
-                    <h1>{key}</h1>
-                    {value.map((e) => (
-                     <Col sm={6} md={4} lg={2}>
-                      <div 
-                        className='team-nameplate m-1'
-                        style={{
-              
-                          borderTop: `solid 0.5rem ${e.branding.secondary}`,
-                          background: '#181818',
-                        }}
-                      >
-                        <Link to={e.uuid}>
-                        <div className='team-nameplate-name' style={{}}>
-                          {e.name}
-                        </div>
-                        <center>
-                          <div className='team-nameplate-imgwrapper'>
-                            <img
-                              className='team-nameplate-img'
-                              src={e.branding.logo}
-                              alt=''
-                            />
+            {teamByLeague ? (
+              <center>
+                {' '}
+                {Object.entries(teamByLeague).map(([key, value]) => {
+                  return (
+                    <Row>
+                      <h1>{key}</h1>
+                      {value.map((e) => (
+                        <Col sm={6} md={4} lg={2}>
+                          <div
+                            className='team-nameplate m-1'
+                            style={{
+                              borderTop: `solid 0.5rem ${e.branding.primary}`,
+                              background: '#181818',
+                            }}
+                          >
+                            <Link to={e.uuid}>
+                              <div className='team-nameplate-name' style={{}}>
+                                {e.name}
+                              </div>
+                              <center>
+                                <div className='team-nameplate-imgwrapper'>
+                                  <img
+                                    className='team-nameplate-img'
+                                    src={e.branding.logo}
+                                    alt=''
+                                  />
+                                </div>
+                              </center>
+                            </Link>
                           </div>
-                        </center>
-                        </Link>
-                      </div>
-                      </Col>
-            
-                    ))}
-                  </Row>
-                
-                  
-                );
-              })
-              
-            )} </center>): (
+                        </Col>
+                      ))}
+                    </Row>
+                  );
+                })}{' '}
+              </center>
+            ) : (
               <center>
                 <Spinner animation='border' size='lg' role='status' />
               </center>
