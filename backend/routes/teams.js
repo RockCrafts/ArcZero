@@ -1,5 +1,3 @@
-const { getPlayerSnippets } = require('./players');
-
 const leagueQuickLookup = {
   recC3IBsAi0Bf8bBU: 'League Zero',
   rece8HkvjvdhkP6aN: 'Flux Cup',
@@ -47,39 +45,35 @@ module.exports = {
     app.get('/teams/:uuid', async (req, res) => {
       const record = await base('Teams').find(req.params.uuid);
       let league = leagueQuickLookup[record.get('League')[0]];
-      console.log(record);
-      try {
-        let roster = await getPlayerSnippets(record.get('Roster'), base);
-        let staff = await getPlayerSnippets(record.get('Staff'), base);
-        let manager = await getPlayerSnippets([record.get('Manager')], base)[0];
-        let relatedTeams = await this.getTeamSnippets(
-          record.get('RelatedTeams'),
-          base
-        );
-        if (!relatedTeams) relatedTeams = '';
+      const { getPlayerSnippets } = require('./players');
+      let roster = await getPlayerSnippets(record.get('Roster'), base);
+      let staff = await getPlayerSnippets(record.get('Staff'), base);
+      let manager = await getPlayerSnippets([record.get('Manager')], base)[0];
+      let relatedTeams = await this.getTeamSnippets(
+        record.get('RelatedTeams'),
+        base
+      );
+      if (!relatedTeams) relatedTeams = '';
 
-        const teamSnippet = {
-          name: record.get('Name'),
-          uuid: record.get('uuid'),
-          roster,
-          staff,
-          season: record.get('Season'),
-          league: league,
-          manager,
-          division: record.get('Division'),
-          relatedTeams,
-          branding: {
-            primary: record.get('PrimaryColor'),
-            secondary: record.get('SecondaryColor'),
-            logo: record.get('Logo'),
-          },
-        };
-        if (record.get('Logo'))
-          teamSnippet.branding.logo = record.get('Logo')[0].url;
-        res.send(teamSnippet);
-      } catch {
-        res.send('Error');
-      }
+      const teamSnippet = {
+        name: record.get('Name'),
+        uuid: record.get('uuid'),
+        roster,
+        staff,
+        season: record.get('Season'),
+        league: league,
+        manager,
+        division: record.get('Division'),
+        relatedTeams,
+        branding: {
+          primary: record.get('PrimaryColor'),
+          secondary: record.get('SecondaryColor'),
+          logo: record.get('Logo'),
+        },
+      };
+      if (record.get('Logo'))
+        teamSnippet.branding.logo = record.get('Logo')[0].url;
+      res.send(teamSnippet);
     });
   },
   getTeamSnippets: async (uuids, base) => {
@@ -108,6 +102,7 @@ module.exports = {
         out.push(teamSnippet);
       })
     );
+
     return out;
   },
 };

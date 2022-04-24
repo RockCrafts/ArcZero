@@ -18,12 +18,34 @@ export const ping = async () => {
 export const fetchPlayers = async () => {
   const response = await fetch(APIBASE + '/players');
   const json = await response.json();
-
   return json;
 };
 export const getTeamFromUUID = async (uuid) => {
   const response = await fetch(APIBASE + '/teams/' + uuid);
   const json = await response.json();
+  json.roster = json.roster.sort((a, b) =>
+    a.name > b.name ? 1 : b.name > a.name ? -1 : 0
+  );
+  json.staff = json.staff.sort((a, b) =>
+    a.name > b.name ? 1 : b.name > a.name ? -1 : 0
+  );
+  json.relatedTeams = json.relatedTeams.sort((a, b) =>
+    a.name > b.name ? 1 : b.name > a.name ? -1 : 0
+  );
+  return json;
+};
+export const getPlayerFromUUID = async (uuid) => {
+  const response = await fetch(APIBASE + '/players/' + uuid);
+  const json = await response.json();
+  json.playingFor = json.playingFor.sort((a, b) =>
+    a.name > b.name ? 1 : b.name > a.name ? -1 : 0
+  );
+  json.staffFor = json.staffFor.sort((a, b) =>
+    a.name > b.name ? 1 : b.name > a.name ? -1 : 0
+  );
+  json.managed = json.managed.sort((a, b) =>
+    a.name > b.name ? 1 : b.name > a.name ? -1 : 0
+  );
   return json;
 };
 export const getTeamByLeague = async () => {

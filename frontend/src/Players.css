@@ -1,0 +1,13 @@
+.playerbar {
+  margin: 30px 0 15px 0;
+}
+.player-h1 {
+  font-size: 80px;
+  line-height: 100%;
+  font-family: 'Roboto Condensed';
+}
+.player-h2 {
+  font-size: 50px;
+
+  font-family: 'Roboto Condensed';
+}

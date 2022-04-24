@@ -8,6 +8,7 @@ import Team from './Team';
 import { useEffect, useState } from 'react';
 import { ping } from './API';
 import Offline from './Offline';
+import Player from './Player';
 // import { Nav } from 'react-bootstrap';
 function App() {
   const [serverOnline, setServerOnline] = useState(undefined);
@@ -28,6 +29,7 @@ function App() {
           <Routes>
             {serverOnline ? (
               <>
+                <Route path='/players/:id' element={<Player />} />
                 <Route path='/teams/:id' element={<Team />} />
                 <Route path='/teams' element={<Teams />} />
                 <Route path='/players' element={<Players />} />

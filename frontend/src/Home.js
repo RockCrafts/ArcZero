@@ -23,13 +23,13 @@ function Home() {
               <h3>Its a thing created by people who are dumb! (fucks)</h3>
               <PlayerPlate
                 playerData={[
-                  { name: 'RockCrafts', uuid: '' },
-                  { name: 'poofa', uuid: '' },
-                  { name: 'Crystaal', uuid: '' },
-                  { name: 'Kernmaster', uuid: '' },
-                  { name: 'chromed', uuid: '' },
-                  { name: 'FROGMAN', uuid: '' },
-                  { name: 'Kory', uuid: '' },
+                  { name: 'RockCrafts', uuid: 'recv6tBD56l2aJV5A' },
+                  { name: 'poofa', uuid: 'recqnS0lBMgOdiqtX' },
+                  { name: 'Crystaal', uuid: 'recc1DxeClgA83OKD' },
+                  { name: 'Kernmaster', uuid: 'recOGha91JnCAQWJT' },
+                  { name: 'Chromed', uuid: 'rec7CeZiFiudrtTcf' },
+                  { name: 'FROGMAN', uuid: 'recWQocXmfslsproM' },
+                  { name: 'Kory', uuid: 'reco7XskeGv3elcZQ' },
                 ]}
               />
             </Col>
