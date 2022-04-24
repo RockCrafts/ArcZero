@@ -1,6 +1,6 @@
 import React from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
-import PlayerPlate from './PlayerPlate';
+import PlayerPlate from './Components/PlayerPlate';
 
 function Home() {
   return (
@@ -9,7 +9,7 @@ function Home() {
         <Row>
           <Col className='p-3' md={12}>
             <center>
-              <h1>Welcome to ArcZero</h1>
+              <h1 className='header'>Welcome to ArcZero</h1>
               <h3>Created by Dumb Fucks</h3>
             </center>
           </Col>

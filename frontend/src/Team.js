@@ -1,21 +1,26 @@
 import React, { useEffect, useState } from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
+import { Col, Container, Row, Spinner } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import { getTeamFromUUID } from './API';
-import PlayerPlate from './PlayerPlate';
+import LoadingSpinner from './Components/LoadingSpinner';
+import RelatedTeams from './Components/RelatedTeams';
+import TeamRoster from './Components/TeamRoster';
 import './Teams.css';
 function Team() {
   const { id } = useParams();
   const [teamData, setTeamData] = useState(undefined);
+  const [selectedTab, setSelectedTab] = useState(1);
   // const [secti]
   useEffect(() => {
+    setSelectedTab(1);
+    setTeamData(undefined);
     getTeamFromUUID(id).then((out) => setTeamData(out));
-  }, []);
+  }, [id]);
 
   return (
     <Container className='gen-page text-light m-2' fluid>
-      <Container>
-        <Row>
+      {teamData ? (
+        <Container>
           {teamData && (
             <Col
               className=' '
@@ -51,28 +56,44 @@ function Team() {
               </div>
             </Col>
           )}
-          <Col md={12}>
-            <p />
-            <div className='team-section-selector'>
-              <button>Games</button>
-              <button>Roster {'&'} Management</button>
-              <button>Related Teams</button>
-            </div>
-          </Col>
-          <Col md={12}>
-            <p />
-            <h3>Roster</h3>
-            {teamData && <PlayerPlate playerData={teamData.roster} />}
-          </Col>
-          <Col md={12}>
-            <p />
-            <h3>Staff</h3>
-            {teamData && teamData.staff !== undefined && (
-              <PlayerPlate playerData={teamData.staff} />
-            )}
-          </Col>
-        </Row>
-      </Container>
+          <Row>
+            <Col md={12}>
+              <p />
+              <div className='team-section-selector'>
+                <button
+                  onClick={() => setSelectedTab(0)}
+                  style={{
+                    color: selectedTab === 0 && 'var(--accent)',
+                  }}
+                >
+                  Games
+                </button>
+                <button
+                  onClick={() => setSelectedTab(1)}
+                  style={{
+                    color: selectedTab === 1 && 'var(--accent)',
+                  }}
+                >
+                  Roster {'&'} Management
+                </button>
+                <button
+                  onClick={() => setSelectedTab(2)}
+                  style={{
+                    color: selectedTab === 2 && 'var(--accent)',
+                  }}
+                >
+                  Related Teams
+                </button>
+              </div>
+            </Col>
+
+            {selectedTab === 1 && <TeamRoster teamData={teamData} />}
+            {selectedTab === 2 && <RelatedTeams teamData={teamData} />}
+          </Row>
+        </Container>
+      ) : (
+        <LoadingSpinner />
+      )}
     </Container>
   );
 }

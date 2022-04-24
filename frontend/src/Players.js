@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Col, Container, Form, Row } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 import { fetchPlayers } from './API';
-import PlayerPlate from './PlayerPlate';
+import PlayerPlate from './Components/PlayerPlate';
 
 function Players() {
   useEffect(() => {

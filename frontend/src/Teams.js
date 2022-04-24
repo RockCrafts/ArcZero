@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Col, Container, Form, Row, Spinner } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { getTeamByLeague } from './API';
+import TeamPlate from './Components/TeamPlate';
 import './Teams.css';
 function Teams() {
   // const teamsData = [
@@ -50,7 +51,7 @@ function Teams() {
         <Row>
           <Col className='p-3' md={12}>
             <center>
-              <h1>Teams</h1>
+              <h1 className='header'>Teams</h1>
               <h3>View Teams and their players below!</h3>
             </center>
           </Col>
@@ -71,36 +72,11 @@ function Teams() {
             {teamByLeague ? (
               <center>
                 {' '}
-                {Object.entries(teamByLeague).map(([key, value]) => {
+                {teamByLeague.map(([key, value]) => {
                   return (
                     <Row>
                       <h1>{key}</h1>
-                      {value.map((e) => (
-                        <Col sm={6} md={4} lg={2}>
-                          <div
-                            className='team-nameplate m-1'
-                            style={{
-                              borderTop: `solid 0.5rem ${e.branding.primary}`,
-                              background: '#181818',
-                            }}
-                          >
-                            <Link to={e.uuid}>
-                              <div className='team-nameplate-name' style={{}}>
-                                {e.name}
-                              </div>
-                              <center>
-                                <div className='team-nameplate-imgwrapper'>
-                                  <img
-                                    className='team-nameplate-img'
-                                    src={e.branding.logo}
-                                    alt=''
-                                  />
-                                </div>
-                              </center>
-                            </Link>
-                          </div>
-                        </Col>
-                      ))}
+                      {<TeamPlate teamData={value} />}
                     </Row>
                   );
                 })}{' '}

@@ -16,7 +16,7 @@
   margin: 0.3rem 0.4rem;
   background: #181818;
   color: white;
-  border-top: 4px #5c97cf solid;
+  border-top: 4px var(--accent) solid;
   border-radius: 6px;
   font-size: 1.4rem;
 }

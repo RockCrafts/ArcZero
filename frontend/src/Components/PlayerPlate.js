@@ -1,6 +1,7 @@
 import React from 'react';
-import { Row, Spinner } from 'react-bootstrap';
+import { Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import LoadingSpinner from './LoadingSpinner';
 
 function PlayerPlate({ playerData }) {
   return (
@@ -18,10 +19,7 @@ function PlayerPlate({ playerData }) {
           </div>
         </Row>
       ) : (
-        <center>
-          {' '}
-          <Spinner animation='border' size='lg' role='status' />
-        </center>
+        <LoadingSpinner />
       )}
     </div>
   );

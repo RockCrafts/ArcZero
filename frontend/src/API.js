@@ -1,20 +1,20 @@
-const APIBASE = 'http://localhost:3001';
+const APIBASE = 'https://arc-zero.herokuapp.com'; //PROD
+// const APIBASE = 'http://localhost:3001'; //DEV
+
 const fetchTeams = async () => {
   const response = await fetch(APIBASE + '/teams');
   const json = await response.json();
   return json;
 };
 export const ping = async () => {
-  try  {
+  try {
     const response = await fetch(APIBASE + '/ping');
-    const json = await response.text();
+    await response.text();
     return true;
-  } catch(err) {
-    // console.log(err)
+  } catch (err) {
     return false;
   }
-  return true;
-}
+};
 export const fetchPlayers = async () => {
   const response = await fetch(APIBASE + '/players');
   const json = await response.json();
@@ -30,7 +30,6 @@ export const getTeamByLeague = async () => {
   const data = await fetchTeams();
   let teamByLeague = {};
   data.forEach((element, i) => {
-    console.log(i);
     const prop = element.league + ' S' + element.season;
     if (teamByLeague.hasOwnProperty(prop)) {
       teamByLeague[prop].push(element);
@@ -38,11 +37,10 @@ export const getTeamByLeague = async () => {
       teamByLeague[prop] = [element];
     }
   });
-  // const ordered = Object.keys(teamByLeague)
-  //   .sort()
-  //   .reduce((obj, key) => {
-  //     obj[key] = teamByLeague[key];
-  //     return obj;
-  //   }, {});
-  return teamByLeague;
+  let sorted = [];
+  Object.entries(teamByLeague).forEach(([key, value]) => {
+    sorted.push([key, value]);
+  });
+  sorted.sort().reverse();
+  return sorted;
 };

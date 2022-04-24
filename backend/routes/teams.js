@@ -47,10 +47,16 @@ module.exports = {
     app.get('/teams/:uuid', async (req, res) => {
       const record = await base('Teams').find(req.params.uuid);
       let league = leagueQuickLookup[record.get('League')[0]];
+      console.log(record);
       try {
         let roster = await getPlayerSnippets(record.get('Roster'), base);
         let staff = await getPlayerSnippets(record.get('Staff'), base);
         let manager = await getPlayerSnippets([record.get('Manager')], base)[0];
+        let relatedTeams = await this.getTeamSnippets(
+          record.get('RelatedTeams'),
+          base
+        );
+        if (!relatedTeams) relatedTeams = '';
 
         const teamSnippet = {
           name: record.get('Name'),
@@ -61,6 +67,7 @@ module.exports = {
           league: league,
           manager,
           division: record.get('Division'),
+          relatedTeams,
           branding: {
             primary: record.get('PrimaryColor'),
             secondary: record.get('SecondaryColor'),
@@ -74,5 +81,33 @@ module.exports = {
         res.send('Error');
       }
     });
+  },
+  getTeamSnippets: async (uuids, base) => {
+    let out = [];
+    if (!uuids || uuids == '' || uuids == []) return [];
+
+    await Promise.all(
+      uuids.map(async (p) => {
+        const record = await base('Teams').find(p);
+        let league = leagueQuickLookup[record.get('League')[0]];
+        const teamSnippet = {
+          name: record.get('Name'),
+          uuid: record.get('uuid'),
+          season: record.get('Season'),
+          league: league,
+          manager: record.get('Manager'),
+
+          branding: {
+            primary: record.get('PrimaryColor'),
+            secondary: record.get('SecondaryColor'),
+            logo: record.get('Logo'),
+          },
+        };
+        if (record.get('Logo'))
+          teamSnippet.branding.logo = record.get('Logo')[0].url;
+        out.push(teamSnippet);
+      })
+    );
+    return out;
   },
 };

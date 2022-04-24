@@ -71,9 +71,13 @@
   .teambar-h1 {
     display: flex;
     justify-content: center;
-    font-size: 3rem;
+    font-size: 10vw;
   }
   .teambar-h2 {
+    font-size: 4vw;
+  }
+  .team-section-selector button {
+    font-size: 4vw !important;
   }
 }
 .teambottombar {
@@ -85,12 +89,17 @@
   text-align: center;
 }
 .team-section-selector button {
-  font-size: 2vw;
-  background: transparent;
+  font-size: 1.6vw;
+  background: #181818;
   color: white;
-  border: 0;
-  margin: 10px;
+  border: 3px var(--accent) solid;
+  margin: 3px;
 }
 .team-section-selector button:hover {
   background: #555;
+}
+@media only screen and (max-width: 1500px) {
+  .team-section-selector button {
+    font-size: 2.4vw;
+  }
 }
