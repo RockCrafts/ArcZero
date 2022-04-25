@@ -4,12 +4,18 @@ import { fetchPlayers } from './API';
 import PlayerPlate from './Components/PlayerPlate';
 
 function Players() {
+  const [search, setSearch] = useState('');
   useEffect(() => {
     fetchPlayers().then((e) => {
-      console.log(e);
-      setPlayerData(e);
+      const timeout = setTimeout(() => {
+        let out = e.filter((word) => word.name.includes(search));
+        setPlayerData(out);
+      }, 600);
+      return () => {
+        clearTimeout(timeout);
+      };
     });
-  }, []);
+  }, [search]);
   const [playerData, setPlayerData] = useState(undefined);
   return (
     <Container className='gen-page text-light' fluid>
@@ -25,6 +31,7 @@ function Players() {
           <Form>
             <Form.Group className='mb-3' controlId='formBasicCheckbox'>
               <Form.Control
+                onChange={(e) => setSearch(e.target.value)}
                 type='text'
                 label='Search'
                 placeholder='Filter Players'

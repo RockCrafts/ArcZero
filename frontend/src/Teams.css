@@ -87,16 +87,20 @@
 }
 .team-section-selector {
   text-align: center;
+  width: 100%;
 }
 .team-section-selector button {
+  display: inline;
   font-size: 1.6vw;
   background: #181818;
+  width: 100%;
   color: white;
-  border: 3px var(--accent) solid;
-  margin: 3px;
+  text-transform: uppercase;
+
+  border: 0;
 }
 .team-section-selector button:hover {
-  background: #555;
+  color: var(--accent);
 }
 @media only screen and (max-width: 1500px) {
   .team-section-selector button {

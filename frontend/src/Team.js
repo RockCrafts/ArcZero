@@ -56,18 +56,11 @@ function Team() {
               </div>
             </Col>
           )}
-          <Row>
-            <Col md={12}>
-              <p />
-              <div className='team-section-selector'>
-                <button
-                  onClick={() => setSelectedTab(0)}
-                  style={{
-                    color: selectedTab === 0 && 'var(--accent)',
-                  }}
-                >
-                  Games
-                </button>
+
+          <p />
+          <div className='team-section-selector'>
+            <Row>
+              <Col md={4}>
                 <button
                   onClick={() => setSelectedTab(1)}
                   style={{
@@ -76,6 +69,18 @@ function Team() {
                 >
                   Roster {'&'} Management
                 </button>
+              </Col>
+              <Col md={4}>
+                <button
+                  onClick={() => setSelectedTab(0)}
+                  style={{
+                    color: selectedTab === 0 && 'var(--accent)',
+                  }}
+                >
+                  Games
+                </button>
+              </Col>
+              <Col md={4}>
                 <button
                   onClick={() => setSelectedTab(2)}
                   style={{
@@ -84,12 +89,12 @@ function Team() {
                 >
                   Related Teams
                 </button>
-              </div>
-            </Col>
-
-            {selectedTab === 1 && <TeamRoster teamData={teamData} />}
-            {selectedTab === 2 && <RelatedTeams teamData={teamData} />}
-          </Row>
+              </Col>
+            </Row>
+          </div>
+          <br />
+          {selectedTab === 1 && <TeamRoster teamData={teamData} />}
+          {selectedTab === 2 && <RelatedTeams teamData={teamData} />}
         </Container>
       ) : (
         <LoadingSpinner />
