@@ -1,48 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import { Col, Container, Form, Row, Spinner } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { getTeamByLeague } from './API';
+import { fetchTeams, getTeamByLeague } from './API';
 import TeamPlate from './Components/TeamPlate';
 import './Teams.css';
 function Teams() {
-  // const teamsData = [
-  //   {
-  //     name: 'Exodus',
-  //     branding: {
-  //       primary: 'blue',
-  //       secondary: 'darkblue',
-  //       logo: '',
-  //     },
-  //     league: 'Flux Cup',
-  //     season: 1,
-  //   },
-  //   {
-  //     name: 'Volcanic',
-  //     branding: {
-  //       primary: 'red',
-  //       secondary: 'darkred',
-  //       logo: '',
-  //     },
-  //     league: 'Flux Cup',
-  //     season: 1,
-  //   },
-  //   {
-  //     name: 'Soar Academy',
-  //     branding: {
-  //       primary: 'yellow',
-  //       secondary: 'lightblue',
-  //       logo: '',
-  //     },
-  //     league: 'Flux Cup',
-  //     season: 1,
-  //   },
-  // ];
+  const [search, setSearch] = useState('');
+  const onChangeHandler = (e) => {
+    const timeout = setTimeout(() => {
+      setSearch(e.target.value);
+    }, 450);
+  };
   useEffect(() => {
-    getTeamByLeague().then((out) => {
-      console.log(out);
-      setTeamByLeague(out);
+    fetchTeams().then((t) => {
+      let out = t.filter((word) =>
+        word.name.toLowerCase().includes(search.toLowerCase())
+      );
+      getTeamByLeague(out).then((e) => {
+        setTeamByLeague(e);
+      });
     });
-  }, []);
+  }, [search]);
 
   const [teamByLeague, setTeamByLeague] = useState(false);
   return (
@@ -60,6 +38,7 @@ function Teams() {
           <Form>
             <Form.Group className='mb-3' controlId='formBasicCheckbox'>
               <Form.Control
+                onChange={(e) => onChangeHandler(e)}
                 type='text'
                 label='Search'
                 placeholder='Filter Teams'

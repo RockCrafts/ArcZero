@@ -5,15 +5,17 @@ import PlayerPlate from './Components/PlayerPlate';
 
 function Players() {
   const [search, setSearch] = useState('');
+  const onChangeHandler = (e) => {
+    const timeout = setTimeout(() => {
+      setSearch(e.target.value);
+    }, 450);
+  };
   useEffect(() => {
     fetchPlayers().then((e) => {
-      const timeout = setTimeout(() => {
-        let out = e.filter((word) => word.name.includes(search));
-        setPlayerData(out);
-      }, 600);
-      return () => {
-        clearTimeout(timeout);
-      };
+      let out = e.filter((word) =>
+        word.name.toLowerCase().includes(search.toLowerCase())
+      );
+      setPlayerData(out);
     });
   }, [search]);
   const [playerData, setPlayerData] = useState(undefined);
@@ -31,7 +33,7 @@ function Players() {
           <Form>
             <Form.Group className='mb-3' controlId='formBasicCheckbox'>
               <Form.Control
-                onChange={(e) => setSearch(e.target.value)}
+                onChange={(e) => onChangeHandler(e)}
                 type='text'
                 label='Search'
                 placeholder='Filter Players'

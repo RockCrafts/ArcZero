@@ -1,8 +1,9 @@
 const leagueQuickLookup = {
   recC3IBsAi0Bf8bBU: 'League Zero',
   rece8HkvjvdhkP6aN: 'Flux Cup',
-  recQqMIn87FKHAXG0: 'Tornament of Kings Row',
+  recQqMIn87FKHAXG0: 'Tournament of Kings Row',
   rechjt97oDfAnsbr8: 'Community Snowball Cup',
+  recECYv8TY2ShOl2V: 'Horizon League',
 };
 
 module.exports = {
@@ -48,7 +49,12 @@ module.exports = {
       const { getPlayerSnippets } = require('./players');
       let roster = await getPlayerSnippets(record.get('Roster'), base);
       let staff = await getPlayerSnippets(record.get('Staff'), base);
-      let manager = await getPlayerSnippets([record.get('Manager')], base)[0];
+      let brandArtists = await getPlayerSnippets(
+        record.get('BrandArtists'),
+        base
+      );
+
+      let manager = await getPlayerSnippets([record.get('Manager')], base);
       let relatedTeams = await this.getTeamSnippets(
         record.get('RelatedTeams'),
         base
@@ -61,10 +67,11 @@ module.exports = {
         roster,
         staff,
         season: record.get('Season'),
-        league: league,
+        league,
         manager,
         division: record.get('Division'),
         relatedTeams,
+        brandArtists,
         branding: {
           primary: record.get('PrimaryColor'),
           secondary: record.get('SecondaryColor'),

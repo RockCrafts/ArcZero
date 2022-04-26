@@ -31,7 +31,12 @@ function Player() {
                     {playerData && playerData.name}
                   </div>
                   <Row className='playerbottombar'>
-                    <Col md='auto' className='teambar-h2'></Col>
+                    <Col md='auto' className='teambar-h2'>
+                      {playerData.tags &&
+                        playerData.tags.map((tag) => {
+                          return <div className='tag'>{tag}</div>;
+                        })}
+                    </Col>
                   </Row>
                 </div>
               </div>
@@ -53,6 +58,12 @@ function Player() {
             <Row>
               <div className='player-h2'>Managed for: </div>
               <TeamPlateSmall teamData={playerData.managed} />
+            </Row>
+          )}
+          {playerData.brandArtistFor.length > 0 && (
+            <Row>
+              <div className='player-h2'>Brand Artist for: </div>
+              <TeamPlateSmall teamData={playerData.brandArtistFor} />
             </Row>
           )}
         </Container>

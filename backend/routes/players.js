@@ -29,13 +29,18 @@ module.exports = {
       const playingFor = await getTeamSnippets(record.get('PlayingFor'), base);
       const staffFor = await getTeamSnippets(record.get('StaffFor'), base);
       const managed = await getTeamSnippets(record.get('Managed'), base);
+      const brandArtistFor = await getTeamSnippets(
+        record.get('BrandArtistFor'),
+        base
+      );
 
       const playerSnippet = {
         name: record.get('Name'),
         playingFor,
         staffFor,
         managed,
-        banned: record.get('banned'),
+        brandArtistFor,
+        tags: record.get('Tags'),
         uuid: record.get('uuid'),
       };
       res.send(playerSnippet);

@@ -1,7 +1,7 @@
 const APIBASE = 'https://arc-zero.herokuapp.com'; //PROD
 // const APIBASE = 'http://localhost:3001'; //DEV
 
-const fetchTeams = async () => {
+export const fetchTeams = async () => {
   const response = await fetch(APIBASE + '/teams');
   const json = await response.json();
   return json;
@@ -23,33 +23,39 @@ export const fetchPlayers = async () => {
 export const getTeamFromUUID = async (uuid) => {
   const response = await fetch(APIBASE + '/teams/' + uuid);
   const json = await response.json();
-  json.roster = json.roster.sort((a, b) =>
-    a.name > b.name ? 1 : b.name > a.name ? -1 : 0
-  );
-  json.staff = json.staff.sort((a, b) =>
-    a.name > b.name ? 1 : b.name > a.name ? -1 : 0
-  );
-  json.relatedTeams = json.relatedTeams.sort((a, b) =>
-    a.name > b.name ? 1 : b.name > a.name ? -1 : 0
-  );
+  try {
+    json.roster = json.roster.sort((a, b) =>
+      a.name > b.name ? 1 : b.name > a.name ? -1 : 0
+    );
+    json.staff = json.staff.sort((a, b) =>
+      a.name > b.name ? 1 : b.name > a.name ? -1 : 0
+    );
+    json.relatedTeams = json.relatedTeams.sort((a, b) =>
+      a.name > b.name ? 1 : b.name > a.name ? -1 : 0
+    );
+    json.brandArtists = json.brandArtists.sort((a, b) =>
+      a.name > b.name ? 1 : b.name > a.name ? -1 : 0
+    );
+  } catch {}
   return json;
 };
 export const getPlayerFromUUID = async (uuid) => {
   const response = await fetch(APIBASE + '/players/' + uuid);
   const json = await response.json();
-  json.playingFor = json.playingFor.sort((a, b) =>
-    a.name > b.name ? 1 : b.name > a.name ? -1 : 0
-  );
-  json.staffFor = json.staffFor.sort((a, b) =>
-    a.name > b.name ? 1 : b.name > a.name ? -1 : 0
-  );
-  json.managed = json.managed.sort((a, b) =>
-    a.name > b.name ? 1 : b.name > a.name ? -1 : 0
-  );
-  return json;
+  try {
+    json.playingFor = json.playingFor.sort((a, b) =>
+      a.name > b.name ? 1 : b.name > a.name ? -1 : 0
+    );
+    json.staffFor = json.staffFor.sort((a, b) =>
+      a.name > b.name ? 1 : b.name > a.name ? -1 : 0
+    );
+    json.managed = json.managed.sort((a, b) =>
+      a.name > b.name ? 1 : b.name > a.name ? -1 : 0
+    );
+    return json;
+  } catch {}
 };
-export const getTeamByLeague = async () => {
-  const data = await fetchTeams();
+export const getTeamByLeague = async (data) => {
   let teamByLeague = {};
   data.forEach((element, i) => {
     const prop = element.league + ' S' + element.season;
