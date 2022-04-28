@@ -24,26 +24,33 @@ module.exports = {
         });
     });
     app.get('/players/:uuid', async (req, res) => {
-      const record = await base('Players').find(req.params.uuid);
+      try {
+        const record = await base('Players').find(req.params.uuid);
 
-      const playingFor = await getTeamSnippets(record.get('PlayingFor'), base);
-      const staffFor = await getTeamSnippets(record.get('StaffFor'), base);
-      const managed = await getTeamSnippets(record.get('Managed'), base);
-      const brandArtistFor = await getTeamSnippets(
-        record.get('BrandArtistFor'),
-        base
-      );
+        const playingFor = await getTeamSnippets(
+          record.get('PlayingFor'),
+          base
+        );
+        const staffFor = await getTeamSnippets(record.get('StaffFor'), base);
+        const managed = await getTeamSnippets(record.get('Managed'), base);
+        const brandArtistFor = await getTeamSnippets(
+          record.get('BrandArtistFor'),
+          base
+        );
 
-      const playerSnippet = {
-        name: record.get('Name'),
-        playingFor,
-        staffFor,
-        managed,
-        brandArtistFor,
-        tags: record.get('Tags'),
-        uuid: record.get('uuid'),
-      };
-      res.send(playerSnippet);
+        const playerSnippet = {
+          name: record.get('Name'),
+          playingFor,
+          staffFor,
+          managed,
+          brandArtistFor,
+          tags: record.get('Tags'),
+          uuid: record.get('uuid'),
+        };
+        res.send(playerSnippet);
+      } catch (err) {
+        res.send([]);
+      }
     });
   },
   getPlayerSnippets: async function (uuids, base) {

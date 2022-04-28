@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Col, Container, Row, Spinner } from 'react-bootstrap';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { getTeamFromUUID } from './API';
 import LoadingSpinner from './Components/LoadingSpinner';
 import RelatedTeams from './Components/RelatedTeams';
@@ -8,13 +8,17 @@ import TeamRoster from './Components/TeamRoster';
 import './Teams.css';
 function Team() {
   const { id } = useParams();
+  const naviagate = useNavigate();
   const [teamData, setTeamData] = useState(undefined);
   const [selectedTab, setSelectedTab] = useState(1);
   // const [secti]
   useEffect(() => {
     setSelectedTab(1);
     setTeamData(undefined);
-    getTeamFromUUID(id).then((out) => setTeamData(out));
+    getTeamFromUUID(id).then((out) => {
+      if (out.length === 0) return naviagate('/');
+      else setTeamData(out);
+    });
   }, [id]);
 
   return (
@@ -50,6 +54,9 @@ function Team() {
                     </Col>
                     <Col md='auto' className='teambar-h2'>
                       {teamData && teamData.division}
+                    </Col>
+                    <Col md='auto' className='teambar-h2'>
+                      {teamData && teamData.winner ? 'Winner' : ''}
                     </Col>
                   </Row>
                 </div>

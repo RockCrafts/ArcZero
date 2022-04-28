@@ -14,7 +14,7 @@ function TeamPlate({ teamData }) {
               background: '#181818',
             }}
           >
-            <Link to={e.uuid}>
+            <Link to={'/teams/' + e.uuid}>
               <div className='team-nameplate-name' style={{}}>
                 {e.name}
               </div>

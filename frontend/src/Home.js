@@ -11,7 +11,7 @@ function Home() {
           <Col className='p-3' md={12}>
             <center>
               <h1 className='header'>Welcome to ArcZero</h1>
-              <h3>Created by Dumb Fucks</h3>
+              {/* <h3>Created by RockCrafts</h3> */}
             </center>
           </Col>
         </Row>
@@ -27,10 +27,10 @@ function Home() {
               If you would like to update your player page or make a correction
               to a page, contact poofa#2155 or RockCrafts#1981 on discord.
               <p />
-              Thank you to Solomon and the heavy inspiration from slmn.gg.
-              ArcZero is heavily based off of Solomon's website and we thank him
-              for giving this opportunity to bring something like so to a
-              different community.
+              Thank you to Solomon and the heavy inspiration from{' '}
+              <a href='https://slmn.gg'>slmn.gg</a>. ArcZero is heavily based
+              off of Solomon's website and we thank him for giving this
+              opportunity to bring something like so to a different community.
               <p />
               Created by: <br />
               RockCrafts - Developer <br />
@@ -49,7 +49,9 @@ function Home() {
                 ]}
               /> */}
             </Col>
-            with help from sbt, Mani, and coughdrop!
+            with help from sbt, Mani, and coughdrop! <p /> We know there are
+            things that are inaccurate, and we will try and fix them as time
+            goes on!
             <Col md={12}>
               <center>
                 <h2 className='header'>Select a League!</h2>
@@ -58,16 +60,6 @@ function Home() {
           </div>
         </Row>
         <Row>
-          <Col>
-            <Link to='/league/recC3IBsAi0Bf8bBU'>
-              <div className='leaguelogos'>
-                <img
-                  src='https://cdn.discordapp.com/attachments/965626344635498557/968638039020675082/unknown.png'
-                  alt=''
-                />
-              </div>
-            </Link>
-          </Col>
           <Col>
             <Link to='/league/rece8HkvjvdhkP6aN'>
               <div className='leaguelogos'>
@@ -89,6 +81,16 @@ function Home() {
             </Link>
           </Col>
           <Col>
+            <Link to='/league/recC3IBsAi0Bf8bBU'>
+              <div className='leaguelogos'>
+                <img
+                  src='https://cdn.discordapp.com/attachments/965626344635498557/968638039020675082/unknown.png'
+                  alt=''
+                />
+              </div>
+            </Link>
+          </Col>
+          <Col>
             <Link to='/league/rechjt97oDfAnsbr8'>
               <div className='leaguelogos'>
                 <img
@@ -98,6 +100,7 @@ function Home() {
               </div>
             </Link>
           </Col>
+
           <Col>
             <Link to='/league/recECYv8TY2ShOl2V'>
               <div className='leaguelogos'>

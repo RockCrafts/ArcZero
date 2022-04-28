@@ -11,8 +11,10 @@ import Offline from './Offline';
 import Player from './Player';
 import LoadingSpinner from './Components/LoadingSpinner';
 import League from './League';
+import { getAnalytics } from 'firebase/analytics';
 // import { Nav } from 'react-bootstrap';
-function App() {
+function App({ firebase }) {
+  const analytics = getAnalytics(firebase);
   const [serverOnline, setServerOnline] = useState(undefined);
   useEffect(() => {
     try {
