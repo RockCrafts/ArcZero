@@ -1,6 +1,11 @@
 * {
   word-break: break-word;
 }
+.home-topbox {
+  background: #555;
+  padding: 1rem;
+  font-size: 1.5rem;
+}
 .navbar {
   background: #181818;
 }
@@ -23,6 +28,15 @@
   border-radius: 6px;
   font-size: 1.4rem;
 }
+.leaguelogos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.leaguelogos img {
+  margin: 10px 10px;
+  width: 65%;
+}
 a {
   text-decoration: none !important;
 }
@@ -39,4 +53,10 @@ a {
   border-top: 4px var(--accent) solid;
   border-radius: 6px;
   font-size: 1.2rem;
+}
+@media only screen and (max-width: 1000px) {
+  .leaguelogos img {
+    margin: 5px 5px;
+    width: 100%;
+  }
 }

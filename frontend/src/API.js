@@ -18,6 +18,18 @@ export const ping = async () => {
 export const fetchPlayers = async () => {
   const response = await fetch(APIBASE + '/players');
   const json = await response.json();
+  json.sort((a, b) =>
+    a.name.toLowerCase() > b.name.toLowerCase()
+      ? 1
+      : b.name.toLowerCase() > a.name.toLowerCase()
+      ? -1
+      : 0
+  );
+  return json;
+};
+export const getLeagueFromUUID = async (uuid) => {
+  const response = await fetch(APIBASE + '/leagues/' + uuid);
+  const json = await response.json();
   return json;
 };
 export const getTeamFromUUID = async (uuid) => {
@@ -55,6 +67,26 @@ export const getPlayerFromUUID = async (uuid) => {
     return json;
   } catch {}
 };
+
+let sortList = [
+  'League Zero S4',
+  'League Zero S3',
+  'League Zero S2',
+  'League Zero S1',
+  'League Zero S0',
+  'Flux Cup S4',
+  'Flux Cup S3',
+  'Flux Cup S2',
+  'Flux Cup S1',
+  'Flux Cup S0',
+  'Tournament of Kings Row S4',
+  'Tournament of Kings Row S3',
+  'Tournament of Kings Row S2',
+  'Tournament of Kings Row S1',
+  'Tournament of Kings Row S0',
+  'Community Snowball Cup S1',
+  'Horizon League S2',
+];
 export const getTeamByLeague = async (data) => {
   let teamByLeague = {};
   data.forEach((element, i) => {
@@ -69,6 +101,11 @@ export const getTeamByLeague = async (data) => {
   Object.entries(teamByLeague).forEach(([key, value]) => {
     sorted.push([key, value]);
   });
-  sorted.sort().reverse();
+  sorted.sort((a, b) => {
+    console.log(a[0]);
+
+    console.log(b[0]);
+    return sortList.indexOf(a[0]) - sortList.indexOf(b[0]);
+  });
   return sorted;
 };

@@ -30,16 +30,12 @@ function Players() {
           </Col>
         </Row>
         <Row className='m-3' md={12}>
-          <Form>
-            <Form.Group className='mb-3' controlId='formBasicCheckbox'>
-              <Form.Control
-                onChange={(e) => onChangeHandler(e)}
-                type='text'
-                label='Search'
-                placeholder='Filter Players'
-              />
-            </Form.Group>
-          </Form>
+          <Form.Control
+            onChange={(e) => onChangeHandler(e)}
+            type='text'
+            label='Search'
+            placeholder='Filter Players'
+          />
         </Row>
         <PlayerPlate playerData={playerData} />
       </Container>
