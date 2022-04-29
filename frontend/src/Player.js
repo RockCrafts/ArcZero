@@ -58,7 +58,7 @@ function Player() {
                           uniqueWins.push(c.name + ' S' + c.season);
                           return (
                             <div className='tag'>
-                              {c.league + ' S' + c.season + ' Winner'}
+                              {c.league + ' S' + c.season + ' Champion'}
                             </div>
                           );
                         }

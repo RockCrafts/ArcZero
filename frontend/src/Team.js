@@ -56,7 +56,7 @@ function Team() {
                       {teamData && teamData.division}
                     </Col>
                     <Col md='auto' className='teambar-h2'>
-                      {teamData && teamData.winner ? 'Winner' : ''}
+                      {teamData && teamData.winner ? 'Champion' : ''}
                     </Col>
                   </Row>
                 </div>
